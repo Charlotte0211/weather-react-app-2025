@@ -4,8 +4,8 @@
 border: 1px solid #dadde1;
 font-family: arial, sans-serif;
 padding:16px;
-margin: 30px auto;
-max-width:600px;
+margin: 30px auto 10px auto;
+
 border-radius: 4px;
 }
 
@@ -13,6 +13,7 @@ border-radius: 4px;
 color: #474747;
 font-size: 24px;
 line-height: 29px;
+margin : 10px;
 }
 .Weather li {
   list-style: none;
@@ -23,4 +24,38 @@ line-height: 29px;
 .Weather ul {
   padding: 0;
   margin: 0;
+}
+
+
+.clearfix {
+    display: flex;
+    align-items: center;
+}
+
+.weather-icon {
+    width: 64px;
+    height: 64px;
+    margin-right: 10px;
+}
+
+.temperature-container {
+    position: relative;
+    font-size: 48px;
+  
+    display: inline-block;
+}
+
+.temperature {
+    display: inline-block;
+}
+
+.unit {
+    position: absolute;
+    top: 11px;
+    /* Move a little higher */
+    right: -20px;
+    /* Move slightly to the right */
+    font-size: 15px;
+    /* Smaller font size */
+    font-weight: normal;
 }
