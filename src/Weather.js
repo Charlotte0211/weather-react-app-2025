@@ -1,29 +1,31 @@
 import React, { useState }   from "react";
+import FormattedDate from "./FormattedDate";
 import 'bootstrap/dist/css/bootstrap.css';
 import "./Weather.css";
 import "./App.css";
 import "./index.css";
 import axios from "axios";
 
-export default function Weather() {
-    const [ready, setReady] = useState(false);
-    const [weatherData, setWeatherData] = useState(null);
+export default function Weather(props) {
+    const [weatherData, setWeatherData] = useState({ready: false});
 function showTemperature(response) {
     console.log(response.data);
     setWeatherData({
+        ready: true, 
         temperature: Math.round(response.data.temperature.current),
         city: response.data.city,
-        date: new Date(response.data.time * 1000),
         description: response.data.condition.description,
         humidity: Math.round(response.data.temperature.humidity),
+        date: new Date(response.data.time * 1000),
         wind: Math.round(response.data.wind.speed),
-        iconUrl: response.data.condition.icon_url
+        iconUrl: response.data.condition.icon_url,
+        iconDescription: response.data.condition.icon
     });
 
-    setReady(true);
+  
      }   
 
-     if (ready) 
+     if (weatherData.ready) 
         {
             return (
         <div className="Weather"> 
@@ -48,15 +50,17 @@ className="btn btn-primary w-100"
       </form>
         <h1>{weatherData.city}</h1>
         <ul>
-            <li>Saturday 16:29</li>
-            <li>{weatherData.description}</li>
+            <li>
+                <FormattedDate date={weatherData.date} />
+            </li>
+            <li className="text-capitalised">{weatherData.description}</li>
 </ul>
         <div className="row">
             <div className="col-6">
                 <div className="clearfix d-flex align-items-center">
                     <img 
-                    src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
-                    alt="sunny" 
+                    src={weatherData.icon_url}
+                    alt={weatherData.icon}
                     className="weather-icon"/>
                 <div className="temperature-container">
                 <span className="temperature">{weatherData.temperature}
@@ -72,15 +76,14 @@ className="btn btn-primary w-100"
                 </ul>
             </div>
         </div> 
-          </div> 
+        </div> 
     );
     }
 
     else {
 
 const apiKey="o4045te388f5bc6e0abcc5fba3a40236";
-let city="New York";
-let apiUrl=`https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+let apiUrl=`https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=metric`;
 axios.get(apiUrl).then(showTemperature);
 return "Loading...";
 }
