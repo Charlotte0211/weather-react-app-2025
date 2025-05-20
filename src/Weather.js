@@ -20,8 +20,8 @@ function showTemperature(response) {
         humidity: Math.round(response.data.temperature.humidity),
         date: new Date(response.data.time * 1000),
         wind: Math.round(response.data.wind.speed),
-        iconUrl: response.data.condition.icon_url,
-        iconDescription: response.data.condition.icon
+        iconUrl: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`,
+        iconDescription: response.data.condition.description,
     });
 
   
