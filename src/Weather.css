@@ -32,21 +32,23 @@ margin : 10px;
     align-items: center;
 }
 
-.weather-icon {
+.weather canvas {
     width: 64px;
     height: 64px;
-    margin-right: 10px;
+    margin-right: 7px;
 }
+
+
 
 .temperature-container {
     position: relative;
     font-size: 48px;
-  
     display: inline-block;
 }
 
 .temperature {
     display: inline-block;
+    margin-left: 10px;
 }
 
 .unit {
