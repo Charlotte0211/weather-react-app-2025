@@ -32,13 +32,6 @@ margin : 10px;
     align-items: center;
 }
 
-.weather canvas {
-    width: 64px;
-    height: 64px;
-    margin-right: 7px;
-}
-
-
 
 .temperature-container {
     position: relative;
@@ -55,7 +48,7 @@ margin : 10px;
     position: absolute;
     top: 11px;
     /* Move a little higher */
-    right: -20px;
+    right: -41px;
     /* Move slightly to the right */
     font-size: 15px;
     /* Smaller font size */
